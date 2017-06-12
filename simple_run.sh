@@ -6,6 +6,7 @@ virtualenv venv
 source venv/bin/activate
 git clone https://github.com/heikomuller/yadage-workflow-repository.git
 git clone https://github.com/heikomuller/yadage-engine-api.git
+git clone https://github.com/heikomuller/yadage-web-ui.git
 pip install yadage-workflow-repository/
 pip install yadage-engine-api/
 export YADAGEWFREPO_CONFIG=/tmp/yadage/yadage-workflow-repository/config/config.yaml
