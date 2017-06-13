@@ -11,8 +11,6 @@ var OverviewPanel = function(elementId, refreshInterval, ui) {
       * Set the refresh interval. A negative value indicates no refreh.
       */
      this.refreshInterval = refreshInterval;
-     console.log('REFRESH');
-     console.log(refreshInterval);
      /**
       * Generate the DOM componets that will contain the workflow listing
       * overview. The overview will be contained in the element with the given
