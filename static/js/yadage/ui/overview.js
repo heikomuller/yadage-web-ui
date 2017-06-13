@@ -85,6 +85,7 @@ OverviewPanel.prototype = {
      * workflows: WorkflowListing
      */
     refresh : function(ref) {
+        const self = this;
         $.ajax({
             url: ref,
             type: 'GET',
@@ -102,6 +103,9 @@ OverviewPanel.prototype = {
                         $('#' + elId).fadeIn(150);
                     }
                 }
+            },
+            error: function() {
+                window.clearInterval(self.refreshIntervalId);
             }
         });
     },
