@@ -1,0 +1,5 @@
+{
+    "engineAPI": "http://localhost:25011/yadage-engine/api/v1",
+    "templateAPI" : "http://localhost:25012/workflow-repository/api/v1",
+    "refreshInterval": -1
+}

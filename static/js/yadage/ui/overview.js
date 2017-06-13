@@ -1,14 +1,18 @@
-var REFRESH_INTERVAL = 5000;
-
 /**
  * Panel showing counts of the four workflow categories. Only method is refresh
  * to update the counters based on a given workflow listing.
  */
-var OverviewPanel = function(elementId, ui) {
+var OverviewPanel = function(elementId, refreshInterval, ui) {
      /**
       * Identifier of the element containing the overview panel.
       */
      this.elementId = elementId;
+     /**
+      * Set the refresh interval. A negative value indicates no refreh.
+      */
+     this.refreshInterval = refreshInterval;
+     console.log('REFRESH');
+     console.log(refreshInterval);
      /**
       * Generate the DOM componets that will contain the workflow listing
       * overview. The overview will be contained in the element with the given
@@ -68,7 +72,14 @@ OverviewPanel.prototype = {
         this.statsUrl = ref;
         this.refresh(ref);
         const self = this;
-        this.refreshIntervalId = window.setInterval(function(){ self.refresh(ref); }, REFRESH_INTERVAL);
+        if (this.refreshInterval > 0) {
+            this.refreshIntervalId = window.setInterval(
+                function(){
+                    self.refresh(ref);
+                },
+                this.refreshInterval
+            );
+        }
     },
     /**
      * Refresh counters based on given workflow listing.
@@ -104,11 +115,13 @@ OverviewPanel.prototype = {
         window.clearInterval(this.refreshIntervalId);
         this.refresh(this.statsUrl);
         const self = this;
-        this.refreshIntervalId = window.setInterval(
-            function(){
-                self.refresh(self.statsUrl);
-            },
-            REFRESH_INTERVAL
-        );
+        if (this.refreshInterval > 0) {
+            this.refreshIntervalId = window.setInterval(
+                function(){
+                    self.refresh(self.statsUrl);
+                },
+                this.refreshInterval
+            );
+        }
     }
 };

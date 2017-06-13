@@ -101,7 +101,7 @@ var STATUS_2_CSS = (status) => {
 /**
  * ADAGE UI - Contains several UI components.
  */
-var ADAGEUI = function(urlWorkflowAPI, urlTemplateAPI, elementId) {
+var ADAGEUI = function(config, elementId) {
     /**
      * Create the relevant DOM elements for the GUI components
      */
@@ -115,10 +115,10 @@ var ADAGEUI = function(urlWorkflowAPI, urlTemplateAPI, elementId) {
      */
     const self = this;
     this.links = {};
-    this.urlWorkflowAPI = CORSify(urlWorkflowAPI);
-    this.urlTemplateAPI = CORSify(urlTemplateAPI);
+    this.urlWorkflowAPI = CORSify(config.engineAPI);
+    this.urlTemplateAPI = CORSify(config.templateAPI);
     this.headline = new HeadlinePanel($EL_HEADLINE);
-    this.overview = new OverviewPanel($EL_OVERVIEW, this);
+    this.overview = new OverviewPanel($EL_OVERVIEW, config.refreshInterval, this);
     this.listings = new ListingPanel(
         $EL_CONTENT,
         function(workflowId, workflowName) {
